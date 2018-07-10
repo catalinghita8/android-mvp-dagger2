@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Mr. News</string>
+    <string name="offline_state_message">You are currently browsing offline.</string>
+    <string name="successfully_archived_news_message">News Headline Archived!</string>
+</resources>
