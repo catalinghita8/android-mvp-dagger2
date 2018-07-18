@@ -3,6 +3,7 @@ This repository contains a detailed sample News application that uses MVP as its
 
 Essential dependencies are Dagger2 with Dagger-android, RxJava with RxAndroid, Room, Retrofit and Espresso. Other noteworthy dependencies would be Mockito, Picasso and Guava.
 # App Demo
+Mr. News is an app that displays news headlines from all around the world. Headlines are continuously being fetched realtime. If offline, the app displays the most recent loaded headlines and offers the posibility of saving headlines for further reading when back online.
 ![content](https://github.com/catalinghita8/android-mvp-dagger2/blob/master/readme_pics/scrolling.gif)
 ![content](https://github.com/catalinghita8/android-mvp-dagger2/blob/master/readme_pics/archiving.gif)
 ![content](https://github.com/catalinghita8/android-mvp-dagger2/blob/master/readme_pics/open_tab.gif)
