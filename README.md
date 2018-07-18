@@ -39,7 +39,10 @@ The below diagram illustrates the most significant relations between components 
 
 ![Dependecy](https://github.com/catalinghita8/android-mvp-dagger2/blob/master/readme_pics/dependecy_graph_diagram.png)
 _Note: The above diagram might help you understand how Dagger-android works. Also, only essential components/modules/objects are included here, this is suggested by the "…"_
+## Testing
+The apps' components are easy to test due to the project's structure and also due to DI achieved through Dagger. Unit tests are conducted with the help of Mockito and Instrumentation tests with the help of Espresso. 
 
+In order to synchronize the background tasks with the testing environment provided by Espresso, a custom implementation of `IdlingResource` has been integrated into the app. I have given more details on this topic in [this medium article](https://medium.com/@catalinghita8/integrate-espresso-idling-resources-in-your-app-to-build-flexible-ui-tests-c779e24f5057).
 ### Reactive approach
 It is extremely important to note that this project has a low level of reactiveness, it might barely dream to the possibilities of a effective reactive approach.
 Nevertheless, the app was intended to have a flexible and efficient testing capability, rather than a fully reactive build.
