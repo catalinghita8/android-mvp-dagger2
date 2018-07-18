@@ -1,7 +1,7 @@
 # Android-MVP-Dagger2
 This repository contains a detailed sample News application that uses MVP as its presentation layer pattern. **The app aims to be extremely flexible to creating variants for automated and manual testing.** Also, the project implements and follows the guidelines presented in Google Sample [MVP+dagger2+dagger-android](https://github.com/googlesamples/android-architecture/tree/todo-mvp-dagger/).
 
-Essential dependencies are Dagger2 with Dagger-android, RxJava with RxAndroid, Room, Retrofit and Espresso. Other noteworthy dependencies would be Mockito, Picasso and Guava.
+Essential dependencies are Dagger2 with Dagger-android, RxJava with RxAndroid, Room, Retrofit and Espresso. Other noteworthy dependencies would be Mockito, Chrome CustomTabs, Picasso and Guava.
 # App Demo
 Mr. News is an app that displays news headlines from all around the world. A fixed number of headlines are continuously being fetched realtime. If offline, the app displays the most recent loaded headlines and offers the posibility of saving headlines for further reading when back online.
 
@@ -9,7 +9,7 @@ Mr. News is an app that displays news headlines from all around the world. A fix
 ![content](https://github.com/catalinghita8/android-mvp-dagger2/blob/master/readme_pics/archiving.gif)
 ![content](https://github.com/catalinghita8/android-mvp-dagger2/blob/master/readme_pics/open_tab.gif)
 ## Presentation Layer
-As you can see in the below diagram, Views are intended to be as dumb as possible. The Presenter handles most of the logic therefore cancelling any dependency between the View layer and the Model layer.
+As you can see in the below diagram, Views are intended to be as dumb and passive as possible. The Presenter handles most of the logic therefore cancelling any dependency between the View layer and the Model layer.
 
 It is easy to spot the fact that the Model layer is completely isolated and centralized through the repository pattern.
 
