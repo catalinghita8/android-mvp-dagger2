@@ -32,6 +32,11 @@ In this manner, the project respects the DIP (Dependency Inversion Principle) as
 It is extremely important to note that this project has a low level of reactiveness, it might barely dream to the possibilities of a effective reactive approach.
 Nevertheless, the app was intended to have a flexible and efficient testing capability, rather than a fully reactive build.
 
+Even in this case, you will be able to notice RxJava's benefits when data is being retrieved by `NewsRemoteDataSource` from the REST client ([News API](https://newsapi.org/)):
+- threading is much easier, with no need for the dreaded `AsyncTasks` 
+- error handling is now fun 
+- any reactive process is immediately stopped in certain situations of the apps' life cycle with the help of `Disposable`
+
 ## Dependency Injection
 Dagger2 is used to externalize the creation of dependencies from the classes that use them. Android specific helpers are provided by `Dagger-Android` and the most significant advantage is that they generate a subcomponent for each `Activity` through a new code generator.
 Such subcomponent is:
@@ -49,10 +54,6 @@ The apps' components are easy to test due to the project's structure and also du
 
 In order to synchronize the background tasks with the testing environment provided by Espresso, a custom implementation of `IdlingResource` has been integrated into the app. I have given more details on this topic in [this medium article](https://medium.com/@catalinghita8/integrate-espresso-idling-resources-in-your-app-to-build-flexible-ui-tests-c779e24f5057).
 
-Even in this case, you will be able to notice RxJava's benefits when data is being retrieved by `NewsRemoteDataSource` from the REST client ([News API](https://newsapi.org/)):
-- threading is much easier, with no need for the dreaded `AsyncTasks` 
-- error handling is now fun 
-- any reactive process is immediately stopped in certain situations of the apps' life cycle with the help of `Disposable`
 ## Strong points
 - possess high flexibility to create variants for automated and manual testing
 - possess lightweight structure due to its presentation layer pattern
