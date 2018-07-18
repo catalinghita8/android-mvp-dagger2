@@ -3,7 +3,7 @@ This repository contains a detailed sample News application that uses MVP as its
 
 Essential dependencies are Dagger2 with Dagger-android, RxJava with RxAndroid, Room, Retrofit and Espresso. Other noteworthy dependencies would be Mockito, Picasso and Guava.
 # App Demo
-Mr. News is an app that displays news headlines from all around the world. Headlines are continuously being fetched realtime. If offline, the app displays the most recent loaded headlines and offers the posibility of saving headlines for further reading when back online.
+Mr. News is an app that displays news headlines from all around the world. A fixed number of headlines are continuously being fetched realtime. If offline, the app displays the most recent loaded headlines and offers the posibility of saving headlines for further reading when back online.
 
 ![content](https://github.com/catalinghita8/android-mvp-dagger2/blob/master/readme_pics/scrolling.gif)
 ![content](https://github.com/catalinghita8/android-mvp-dagger2/blob/master/readme_pics/archiving.gif)
@@ -14,6 +14,19 @@ As you can see in the below diagram, Views are intended to be as dumb as possibl
 It is easy to spot the fact that the Model layer is completely isolated and centralized through the repository pattern.
 
 ![Presentation](https://github.com/catalinghita8/android-mvp-dagger2/blob/master/readme_pics/presentation_layer_diagram.png)
+
+## Model Layer
+The model layer is structured on repository pattern so that the presenter has no clue on the origins of the data. Following this idea, the repository has two main use-cases, online and offline. In the online use-case data is first being fetched from the `NewsRemoteDataSource` and the local source is refreshed. I case of failure,  `NewsLocalDataSource` is queried. As for the offline use-case, `NewsLocalDataSource` has priority.
+
+As you might have noticed in the above diagram and discussion, the repository handles data interactions and transactions from two main data sources - local and remote:
+- `NewsRemoteDataSource` defined by a REST API consumed with [Retrofit](http://square.github.io/retrofit)
+- `NewsLocalDataSource` defined by a SQL database consumed with [Room](https://developer.android.com/topic/libraries/architecture/room)
+
+When data is being retrieved (from any source), every response is propagated through callbacks all the way to the `NewsPresenter` that handles them accordingly.
+
+The same way as the Presenter-View relationship depends entirely on interfaces defined in `NewsContract`, decoupling is reinforced within the Model layer (entirely consisted by `NewsRepository`). Therefore, lower level components (which are the data sources: `NewsRemoteDataSource` and `NewsLocalDatasourece`) are decoupled through `NewsDataSource` interface.
+
+In this manner, the project respects the DIP (Dependency Inversion Principle) as both low and high level modules depend on abstractions.
 ## Dependency Injection
 Dagger2 is used to externalize the creation of dependencies from the classes that use them. Android specific helpers are provided by `Dagger-Android` and the most significant advantage is that they generate a subcomponent for each `Activity` through a new code generator.
 Such subcomponent is:
@@ -26,16 +39,7 @@ The below diagram illustrates the most significant relations between components 
 
 ![Dependecy](https://github.com/catalinghita8/android-mvp-dagger2/blob/master/readme_pics/dependecy_graph_diagram.png)
 _Note: The above diagram might help you understand how Dagger-android works. Also, only essential components/modules/objects are included here, this is suggested by the "…"_
-## Model Layer
-As you might have noticed in the first diagram, the repository handles data interactions and transactions from two main data sources - local and remote:
-- `NewsRemoteDataSource` defined by a REST API consumed with [Retrofit](http://square.github.io/retrofit)
-- `NewsLocalDataSource` defined by a SQL database consumed with [Room](https://developer.android.com/topic/libraries/architecture/room)
 
-When data is being retrieved (from any source), every response is propagated through callbacks all the way to the `NewsPresenter` that handles them accordingly.
-
-The same way as the Presenter-View relationship depends entirely on interfaces defined in `NewsContract`, decoupling is reinforced within the Model layer (entirely consisted by `NewsRepository`). Therefore, lower level components (which are the data sources: `NewsRemoteDataSource` and `NewsLocalDatasourece`) are decoupled through `NewsDataSource` interface.
-
-In this manner, the project respects the DIP (Dependency Inversion Principle) as both low and high level modules depend on abstractions.
 ### Reactive approach
 It is extremely important to note that this project has a low level of reactiveness, it might barely dream to the possibilities of a effective reactive approach.
 Nevertheless, the app was intended to have a flexible and efficient testing capability, rather than a fully reactive build.
