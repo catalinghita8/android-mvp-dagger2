@@ -1,5 +1,5 @@
 # Android-MVP-Dagger2
-This repository contains a detailed sample News application that uses MVP as its presentation layer pattern. **The app aims to be extremely flexible to creating variants for automated and manual testing.** Also, the project implements and follows the guidelines presented in Google Sample [MVP+dagger2+dagger-android](https://github.com/googlesamples/android-architecture/tree/todo-mvp-dagger/).
+This repository contains a detailed sample application that uses MVP as its presentation layer pattern. **The app aims to be extremely flexible to creating variants for automated and manual testing.** Also, the project implements and follows the guidelines presented in Google Sample [MVP+dagger2+dagger-android](https://github.com/googlesamples/android-architecture/tree/todo-mvp-dagger/).
 
 Essential dependencies are Dagger2 with Dagger-android, RxJava with RxAndroid, Room, Retrofit and Espresso. Other noteworthy dependencies would be Mockito, Chrome CustomTabs, Picasso and Guava.
 # App Demo
@@ -16,7 +16,7 @@ It is easy to spot the fact that the Model layer is completely isolated and cent
 ![Presentation](https://github.com/catalinghita8/android-mvp-dagger2/blob/master/readme_pics/presentation_layer_diagram.png)
 
 ## Model Layer
-The model layer is structured on repository pattern so that the presenter has no clue on the origins of the data. Following this idea, the repository has two main use-cases, online and offline. In the online use-case data is first being fetched from the `NewsRemoteDataSource` and the local source is refreshed. I case of failure,  `NewsLocalDataSource` is queried. As for the offline use-case, `NewsLocalDataSource` has priority.
+The model layer is structured on repository pattern so that the presenter has no clue on the origins of the data. Following this idea, the repository has two main use-cases, online and offline. In the online use-case data is first being fetched from the `NewsRemoteDataSource` and the repository data is refreshed. In case of failure,  `NewsLocalDataSource` is queried. As for the offline use-case, `NewsLocalDataSource` has priority.
 
 As you might have noticed in the above diagram and discussion, the repository handles data interactions and transactions from two main data sources - local and remote:
 - `NewsRemoteDataSource` defined by a REST API consumed with [Retrofit](http://square.github.io/retrofit)
@@ -34,7 +34,7 @@ Nevertheless, the app was intended to have a flexible and efficient testing capa
 
 Even in this case, you will be able to notice RxJava's benefits when data is being retrieved by `NewsRemoteDataSource` from the REST client ([News API](https://newsapi.org/)):
 - threading is much easier, with no need for the dreaded `AsyncTasks` 
-- error handling is now fun 
+- error handling is straightforward and comfortable
 - any reactive process is immediately stopped in certain situations of the apps' life cycle with the help of `Disposable`
 
 ## Dependency Injection
@@ -57,7 +57,7 @@ In order to synchronize the background tasks with the testing environment provid
 ## Strong points
 - possess high flexibility to create variants for automated and manual testing
 - possess lightweight structure due to its presentation layer pattern
-- is scalable - the app is easy to expand
+- is scalable and easy to expand
 ## Weak points
 - maintenance effort could be lower and scalability could be better - even though the app has a solid structure and complies to some of the SOLID principles, it cannot be considered as part of Clean Architecture, mainly because the Presenter contains most of the logic, therefore substituting Interactors (use-cases) 
 - possess medium complexity - other approaches might lower complexity and increase efficiency
