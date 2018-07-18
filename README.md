@@ -63,6 +63,6 @@ In order to synchronize the background tasks with the testing environment provid
 - possess medium complexity - other approaches might lower complexity and increase efficiency
 
 # Final notes:
-- the app is not a polished ready-to-publish product, it acts merely as a starting point for android enthusiasts out there 
+- the app is not a polished ready-to-publish product, it acts as a boilerplate project or as a starting point for android enthusiasts out there 
 - using this project as your starting point and expanding it is also encouraged, as at this point it is very easy to add new modules
 - forks are encouraged
