@@ -42,7 +42,6 @@ public class NewsRemoteDataSourceTest {
     @Mock
     NewsService newsService;
 
-
     private NewsRemoteDataSource mRemoteDataSource;
 
     @Before
@@ -63,11 +62,14 @@ public class NewsRemoteDataSourceTest {
 
     /**
      * Test scenario states:
+     * Remote Source should get the correct callbacks in both success and failure scenarios
      */
     @Test
     public void testRemoteApiResponse() throws Exception{
+        // set up mock callback
         NewsDataSource.LoadNewsCallback newsCallback = mock(NewsDataSource.LoadNewsCallback.class);
 
+        // set up mock response
         NewsResponse mockNewsResponse = new NewsResponse();
         mockNewsResponse.setArticles(Constants.TEST_NEWS);
 
@@ -78,6 +80,7 @@ public class NewsRemoteDataSourceTest {
         // assume the repository calls the remote DataSource
         mRemoteDataSource.getNews(Constants.TEST_NO_CATEGORY_STRING, newsCallback);
 
+        // check if correct callback has been made
         verify(newsCallback).onNewsLoaded(Constants.TEST_NEWS);
 
         // prepare fake exception

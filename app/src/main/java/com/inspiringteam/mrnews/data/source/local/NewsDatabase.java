@@ -9,7 +9,7 @@ import com.inspiringteam.mrnews.data.models.News;
  * The Room Database that contains the News table.
  */
 
-@Database(entities = {News.class}, version = 1)
-public abstract class NewsDatabase extends RoomDatabase{
+@Database(entities = {News.class}, version = 1, exportSchema = false)
+public abstract class NewsDatabase extends RoomDatabase {
     public abstract NewsDao newsDao();
 }

@@ -1,7 +1,6 @@
 package com.inspiringteam.mrnews.util.ExecutorUtils;
 
 
-
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;

@@ -33,18 +33,18 @@ public class NewsPresenter extends BasePresenter<NewsContract.View> implements N
         mTabsWrapper = tabsWrapper;
     }
 
-    // inject separately ImageLoader client so that tests do not care about it
+    // inject separately ImageLoader client so that tests do not have to care about it
     @Inject
     Picasso mPicasso;
 
     /**
-     * retrieve all unsaved news (items) from repository
+     * retrieve all unarchived news (items) from repository
      */
     @Override
     public void loadNews(String category) {
-        // The network request might be handled in a different thread so make sure Espresso knows
+        // The request might be handled in a different thread so make sure Espresso knows
         // that the app is busy until the response is handled.
-        EspressoIdlingResource.increment(); // App is busy until further notice
+        notifyEspressoAppIsBusy();
 
         mNewsRepository.getNews(category, new NewsDataSource.LoadNewsCallback() {
             @Override
@@ -54,23 +54,20 @@ public class NewsPresenter extends BasePresenter<NewsContract.View> implements N
 
             @Override
             public void onNewsLoaded(List<News> news) {
-                // let's make sure the app is still marked as busy then decrement
-                if (!EspressoIdlingResource.getIdlingResource().isIdleNow()) {
-                    EspressoIdlingResource.decrement(); // Set app as idle.
-                }
-
+                notifyEspressoAppIsIdle();
                 processDataToBeDisplayed(news);
             }
 
             @Override
             public void onDataNotAvailable() {
+                notifyEspressoAppIsIdle();
                 processEmptyDataList();
             }
         });
     }
 
     /**
-     * retrieve only saved news (items) from repository
+     * retrieve only archived news (items) from repository
      */
     @Override
     public void loadSavedNews() {
@@ -133,6 +130,17 @@ public class NewsPresenter extends BasePresenter<NewsContract.View> implements N
 
         disposables.clear();
         disposables.dispose();
+    }
+
+    private void notifyEspressoAppIsIdle() {
+        // let's make sure the app is still marked as busy then decrement
+        if (!EspressoIdlingResource.getIdlingResource().isIdleNow()) {
+            EspressoIdlingResource.decrement(); // Set app as idle.
+        }
+    }
+
+    private void notifyEspressoAppIsBusy() {
+        EspressoIdlingResource.increment(); // App is busy until further notice
     }
 
     private void addDisposable(Disposable disposable) {

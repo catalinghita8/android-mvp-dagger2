@@ -46,7 +46,7 @@ public interface NewsDao {
     /**
      * Insert news (item) in the database. If the news (item) already exists, replace it.
      *
-     * @param news  to be inserted.
+     * @param news to be inserted.
      */
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertNews(News news);

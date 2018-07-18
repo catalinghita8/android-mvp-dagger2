@@ -54,7 +54,7 @@ public class NewsLocalDataSource implements NewsDataSource {
     }
 
     /**
-     *  Simply adds a news (item) to Room DB
+     * Simply adds a news (item) to Room DB
      */
     @Override
     public void insertNews(@NonNull final News news) {

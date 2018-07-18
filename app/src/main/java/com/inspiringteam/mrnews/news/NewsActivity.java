@@ -18,7 +18,7 @@ import javax.inject.Inject;
 import dagger.android.support.DaggerAppCompatActivity;
 
 /**
- * Activity in which NewsFragment emerges from
+ * Lightweight Activity in which NewsFragment emerges from
  */
 
 public class NewsActivity extends DaggerAppCompatActivity {

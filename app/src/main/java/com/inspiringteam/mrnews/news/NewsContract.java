@@ -11,7 +11,7 @@ import java.util.List;
  */
 
 public interface NewsContract {
-    interface View extends BaseView<Presenter>{
+    interface View extends BaseView<Presenter> {
         void showNews(List<News> news);
 
         void showNoNews();

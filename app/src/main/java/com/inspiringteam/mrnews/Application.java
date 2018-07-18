@@ -4,6 +4,7 @@ import android.support.annotation.VisibleForTesting;
 
 import com.inspiringteam.mrnews.data.source.NewsRepository;
 import com.inspiringteam.mrnews.di.DaggerAppComponent;
+
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjector;

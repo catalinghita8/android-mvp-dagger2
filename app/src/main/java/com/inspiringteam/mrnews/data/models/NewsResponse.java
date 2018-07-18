@@ -45,7 +45,7 @@ public class NewsResponse {
         this.totalResults = totalResults;
     }
 
-    public NewsResponse(){
+    public NewsResponse() {
         articles = new ArrayList<News>();
     }
 }

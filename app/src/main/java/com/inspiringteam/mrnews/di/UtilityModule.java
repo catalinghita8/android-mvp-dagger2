@@ -13,24 +13,23 @@ import dagger.Module;
 import dagger.Provides;
 
 
-
 @Module
 public class UtilityModule {
     @Provides
     @AppScoped
-    ConnectivityManager provideConnectivityManager (Application context){
+    ConnectivityManager provideConnectivityManager(Application context) {
         return (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
     }
 
     @Provides
     @AppScoped
-    OnlineChecker onlineChecker(ConnectivityManager cm){
+    OnlineChecker onlineChecker(ConnectivityManager cm) {
         return new DefaultOnlineChecker(cm);
     }
 
     @AppScoped
     @Provides
-    Picasso providePicasso(Application app){
+    Picasso providePicasso(Application app) {
         return Picasso.with(app);
     }
 }

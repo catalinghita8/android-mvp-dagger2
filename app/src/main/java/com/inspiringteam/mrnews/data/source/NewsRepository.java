@@ -84,15 +84,15 @@ public class NewsRepository implements NewsDataSource {
 
             @Override
             public void onDataNotAvailable() {
-                if(mOnlineChecker.isOnline())
-                getSavedNewsFromRemoteDataSource(callback);
+                if (mOnlineChecker.isOnline())
+                    getSavedNewsFromRemoteDataSource(callback);
                 else callback.onDataNotAvailable();
             }
 
         });
     }
 
-    private void getSavedNewsFromRemoteDataSource (@NonNull final LoadSavedNewsCallback callback){
+    private void getSavedNewsFromRemoteDataSource(@NonNull final LoadSavedNewsCallback callback) {
         mNewsRemoteDataSource.getArchivedNews(new LoadSavedNewsCallback() {
             @Override
             public void onNewsLoaded(List<News> news) {
@@ -106,7 +106,7 @@ public class NewsRepository implements NewsDataSource {
         });
     }
 
-    private void getNewsFromLocalDataSource(String category, @NonNull final LoadNewsCallback callback){
+    private void getNewsFromLocalDataSource(String category, @NonNull final LoadNewsCallback callback) {
         mNewsLocalDataSource.getNews(category, new LoadNewsCallback() {
             @Override
             public void onDisposableAcquired(Disposable disposable) {
@@ -127,8 +127,8 @@ public class NewsRepository implements NewsDataSource {
 
     /**
      * this method refreshes repository data
-     *  1st phase -  deleting all unsaved News (items) to make space for others
-     *  2nd phase - replenishing repository with fresh news (items)
+     * 1st phase -  deleting all unsaved News (items) to make space for others
+     * 2nd phase - replenishing repository with fresh news (items)
      */
     private void refreshNews(String category, List<News> news) {
         // 1st phase
@@ -136,13 +136,10 @@ public class NewsRepository implements NewsDataSource {
 
         // 2nd phase
         for (News newsItem : news) {
-            // first set unique id and category for current item
-            newsItem.setId(SortUtils.hashCode(newsItem.getTitle()));
-            newsItem.setCategory(category);
+            setNewsItemContent(newsItem, category);
             insertNews(newsItem);
         }
     }
-
 
     /**
      * just save news (item) to both remote and local data sources
@@ -153,6 +150,9 @@ public class NewsRepository implements NewsDataSource {
         mNewsRemoteDataSource.insertNews(news);
     }
 
+    /**
+     * just update news (item) to both remote and local data sources
+     */
     @Override
     public void updateNews(News news) {
         mNewsLocalDataSource.updateNews(news);
@@ -160,7 +160,7 @@ public class NewsRepository implements NewsDataSource {
     }
 
     /**
-     * refreshNews() deletes all news (excepting saved ones) from the repository
+     * deletes all news (excepting saved ones) from the repository
      * in order to make space for fresh items
      */
     @Override
@@ -170,11 +170,19 @@ public class NewsRepository implements NewsDataSource {
     }
 
     /**
-     * Complete deletion of all records in repository (with no exception)
+     * complete deletion of all records in repository (with no exception)
      */
     @Override
     public void deleteNews() {
         mNewsLocalDataSource.deleteNews();
         mNewsRemoteDataSource.deleteNews();
+    }
+
+
+    private void setNewsItemContent(News newsItem, String category){
+        // set unique id, category and source for current item before inserting it into repository
+        newsItem.setId(SortUtils.hashCode(newsItem.getTitle()));
+        newsItem.setCategory(category);
+        newsItem.setSourceDataString(newsItem.getSourceData().getName());
     }
 }

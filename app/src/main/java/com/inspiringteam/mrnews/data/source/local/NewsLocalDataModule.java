@@ -16,9 +16,10 @@ import dagger.Provides;
 @Module
 public class NewsLocalDataModule {
     private static final int THREAD_COUNT = 3;
+
     @AppScoped
     @Provides
-     NewsDatabase provideDb(Application context) {
+    NewsDatabase provideDb(Application context) {
         return Room.databaseBuilder(context.getApplicationContext(),
                 NewsDatabase.class, Constants.NEWS_ROOM_DB_STRING)
                 .build();
@@ -26,13 +27,13 @@ public class NewsLocalDataModule {
 
     @AppScoped
     @Provides
-     NewsDao provideNewsDao(NewsDatabase db) {
+    NewsDao provideNewsDao(NewsDatabase db) {
         return db.newsDao();
     }
 
     @AppScoped
     @Provides
-     AppExecutors provideAppExecutors() {
+    AppExecutors provideAppExecutors() {
         return new AppExecutors(new DiskIOThreadExecutor(),
                 Executors.newFixedThreadPool(THREAD_COUNT),
                 new AppExecutors.MainThreadExecutor());

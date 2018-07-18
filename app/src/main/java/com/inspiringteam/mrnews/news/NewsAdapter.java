@@ -10,11 +10,14 @@ import android.widget.TextView;
 
 import com.inspiringteam.mrnews.R;
 import com.inspiringteam.mrnews.data.models.News;
+import com.inspiringteam.mrnews.util.SortUtils;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -79,7 +82,9 @@ public class NewsAdapter extends BaseAdapter {
         final TextView newsTitleTextView = rowView.findViewById(R.id.news_title_view);
         final TextView sourceTextView = rowView.findViewById(R.id.news_source_view);
         final ImageButton archiveImagebutton = rowView.findViewById(R.id.archive_news_ib);
+        final TextView newsDateTextView = rowView.findViewById(R.id.news_date_view);
         archiveImagebutton.setVisibility(View.VISIBLE);
+
         if (currentNews.isArchived()) {
             archiveImagebutton.setVisibility(View.GONE);
         }
@@ -96,8 +101,15 @@ public class NewsAdapter extends BaseAdapter {
             }
         }
 
+        // let's check if the current item has been retrieved from remote source
+        if(currentNews.getSourceData() != null) {
+            sourceTextView.setText(currentNews.getSourceData().getName());
+        } else {
+            // it is being fetched locally, so let's get the assigned field for this case
+            sourceTextView.setText(currentNews.getSourceDataString());
+        }
 
-//        sourceTextView.setText(currentNews.getSourceString());
+        newsDateTextView.setText(SortUtils.getDateDisplayString(currentNews.getPublishedAt()));
 
         newsImageView.setOnClickListener(new View.OnClickListener() {
             @Override

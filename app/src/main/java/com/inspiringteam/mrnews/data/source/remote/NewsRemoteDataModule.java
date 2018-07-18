@@ -32,7 +32,7 @@ public class NewsRemoteDataModule {
 
     @AppScoped
     @Provides
-    NewsService provideNewsService(Retrofit retrofit){
+    NewsService provideNewsService(Retrofit retrofit) {
         return retrofit.create(NewsService.class);
     }
 

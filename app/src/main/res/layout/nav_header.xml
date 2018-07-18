@@ -9,10 +9,9 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:layout_width="100dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/logo" />
-
+        android:src="@drawable/icon" />
 
 </FrameLayout>

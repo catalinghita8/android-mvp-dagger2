@@ -15,6 +15,14 @@ public final class News {
     @ColumnInfo(name = "entryid")
     private int id;
 
+    @Ignore
+    @SerializedName("source")
+    @Expose
+    private SourceData sourceData;
+
+    @ColumnInfo(name = "source")
+    private String sourceDataString;
+
     @SerializedName("title")
     @Expose
     @ColumnInfo(name = "title")
@@ -92,13 +100,28 @@ public final class News {
         return title;
     }
 
+    public SourceData getSourceData() {
+        return sourceData;
+    }
+
+    public void setSourceData(SourceData sourceData) {
+        this.sourceData = sourceData;
+    }
+
     public String getAuthor() {
         return author;
     }
 
     public String getUrl() {
         return url;
+    }
 
+    public String getSourceDataString() {
+        return sourceDataString;
+    }
+
+    public void setSourceDataString(String sourceDataString) {
+        this.sourceDataString = sourceDataString;
     }
 
     public String getCategory() {
@@ -157,6 +180,21 @@ public final class News {
                 com.google.common.base.Objects.equal(url, news.url) &&
                 com.google.common.base.Objects.equal(category, news.category) &&
                 com.google.common.base.Objects.equal(description, news.description);
+    }
+
+    public class SourceData {
+        @SerializedName("name")
+        @ColumnInfo(name = "source_name")
+        @Expose
+        private String name;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
     }
 }
 
