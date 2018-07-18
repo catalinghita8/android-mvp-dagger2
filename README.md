@@ -27,6 +27,11 @@ When data is being retrieved (from any source), every response is propagated thr
 The same way as the Presenter-View relationship depends entirely on interfaces defined in `NewsContract`, decoupling is reinforced within the Model layer (entirely consisted by `NewsRepository`). Therefore, lower level components (which are the data sources: `NewsRemoteDataSource` and `NewsLocalDatasourece`) are decoupled through `NewsDataSource` interface.
 
 In this manner, the project respects the DIP (Dependency Inversion Principle) as both low and high level modules depend on abstractions.
+
+### Reactive approach
+It is extremely important to note that this project has a low level of reactiveness, it might barely dream to the possibilities of a effective reactive approach.
+Nevertheless, the app was intended to have a flexible and efficient testing capability, rather than a fully reactive build.
+
 ## Dependency Injection
 Dagger2 is used to externalize the creation of dependencies from the classes that use them. Android specific helpers are provided by `Dagger-Android` and the most significant advantage is that they generate a subcomponent for each `Activity` through a new code generator.
 Such subcomponent is:
@@ -43,9 +48,6 @@ _Note: The above diagram might help you understand how Dagger-android works. Als
 The apps' components are easy to test due to the project's structure and also due to DI achieved through Dagger. Unit tests are conducted with the help of Mockito and Instrumentation tests with the help of Espresso. 
 
 In order to synchronize the background tasks with the testing environment provided by Espresso, a custom implementation of `IdlingResource` has been integrated into the app. I have given more details on this topic in [this medium article](https://medium.com/@catalinghita8/integrate-espresso-idling-resources-in-your-app-to-build-flexible-ui-tests-c779e24f5057).
-### Reactive approach
-It is extremely important to note that this project has a low level of reactiveness, it might barely dream to the possibilities of a effective reactive approach.
-Nevertheless, the app was intended to have a flexible and efficient testing capability, rather than a fully reactive build.
 
 Even in this case, you will be able to notice RxJava's benefits when data is being retrieved by `NewsRemoteDataSource` from the REST client ([News API](https://newsapi.org/)):
 - threading is much easier, with no need for the dreaded `AsyncTasks` 
