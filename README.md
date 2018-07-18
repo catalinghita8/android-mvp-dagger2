@@ -47,7 +47,7 @@ abstract NewsActivity newsActivity(); 
 ```
 The below diagram illustrates the most significant relations between components and modules. You can also get a quick glance on how annotations help us define custom Scopes in order to properly handle classes instantiation.
 
-![Dependecy](https://github.com/catalinghita8/android-mvp-dagger2/blob/master/readme_pics/dependecy_graph_diagram.png)
+![Dependecy](https://github.com/catalinghita8/android-mvp-dagger2/blob/master/readme_pics/dagger_dependency_graph_diagram.png)
 _Note: The above diagram might help you understand how Dagger-android works. Also, only essential components/modules/objects are included here, this is suggested by the "…"_
 ## Testing
 The apps' components are easy to test due to the project's structure and also due to DI achieved through Dagger. Unit tests are conducted with the help of Mockito and Instrumentation tests with the help of Espresso. 
