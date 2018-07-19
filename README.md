@@ -24,7 +24,7 @@ As you might have noticed in the above diagram and discussion, the repository ha
 
 When data is being retrieved (from any source), every response is propagated through callbacks all the way to the `NewsPresenter` that handles them accordingly.
 
-The same way as the Presenter-View relationship depends entirely on interfaces defined in `NewsContract`, decoupling is reinforced within the Model layer (entirely consisted by `NewsRepository`). Therefore, lower level components (which are the data sources: `NewsRemoteDataSource` and `NewsLocalDatasourece`) are decoupled through `NewsDataSource` interface.
+The same way as the Presenter-View relationship depends entirely on interfaces defined in `NewsContract`, decoupling is reinforced within the Model layer (entirely consisted by `NewsRepository`). Therefore, lower level components (which are the data sources: `NewsRemoteDataSource` and `NewsLocalDatasource`) are decoupled through `NewsDataSource` interface.
 
 In this manner, the project respects the DIP (Dependency Inversion Principle) as both low and high level modules depend on abstractions.
 
