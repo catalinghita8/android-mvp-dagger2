@@ -9,6 +9,7 @@ Mr. News is an app that displays news headlines from all around the world. A fix
 ![content](https://github.com/catalinghita8/android-mvp-dagger2/blob/master/readme_pics/archiving.gif)
 ![content](https://github.com/catalinghita8/android-mvp-dagger2/blob/master/readme_pics/open_tab.gif)
 ## Presentation Layer
+MVP pattern is used to facilitate automated testing and improve the separation of concerns in presentation logic.
 As shown in the below diagram, the View layer is as passive as possible. The Presenter handles most of the logic, cancelling any dependancy between the View Layer and the Model Layer. The model layer is completely isolated and centralized through the repository pattern.
 
 ![Presentation](https://github.com/catalinghita8/android-mvp-dagger2/blob/master/readme_pics/presentation_layer_diagram.png)
