@@ -17,10 +17,10 @@ As shown in the below diagram, the View layer is as passive as possible. The Pre
 The model layer is structured on repository pattern so that the presenter has no clue on the origins of the data. 
 
 The repository handles data interactions and transactions from two main data sources - local and remote:
--- `NewsRemoteDataSource` defined by a REST API consumed with [Retrofit](http://square.github.io/retrofit)
--- `NewsLocalDataSource` defined by a SQL database consumed with [Room](https://developer.android.com/topic/libraries/architecture/room)
+- `NewsRemoteDataSource` defined by a REST API consumed with [Retrofit](http://square.github.io/retrofit)
+- `NewsLocalDataSource` defined by a SQL database consumed with [Room](https://developer.android.com/topic/libraries/architecture/room)
 
-Following this idea, there are two main use-cases, online and offline. In the online use-case data is first being fetched from the `NewsRemoteDataSource` and the repository data is refreshed. In case of failure,  `NewsLocalDataSource` is queried. As for the offline use-case, `NewsLocalDataSource` has priority.
+There are two main use-cases, online and offline. In the online use-case data is first being fetched from the `NewsRemoteDataSource` and the repository data is refreshed. In case of failure,  `NewsLocalDataSource` is queried. As for the offline use-case, `NewsLocalDataSource` has priority.
 
 When data is being retrieved (from any source), every response is propagated through callbacks all the way to the `NewsPresenter` that handles them accordingly.
 
