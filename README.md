@@ -3,24 +3,21 @@ This repository contains a detailed sample application that uses MVP as its pres
 
 Essential dependencies are Dagger2 with Dagger-android, RxJava with RxAndroid, Room, Retrofit and Espresso. Other noteworthy dependencies would be Mockito, Chrome CustomTabs, Picasso and Guava.
 ## App Demo
-Mr. News is an app that displays news headlines from all around the world. A fixed number of headlines are continuously being fetched realtime. If offline, the app displays the most recent loaded headlines and offers the posibility of saving headlines for further reading when back online.
+Mr. News is an app that displays news headlines from all around the world. A fixed number of headlines are continuously being fetched realtime. If offline, the app displays the most recent loaded headlines and offers the possibility of saving headlines for further reading when back online.
 
 ![content](https://github.com/catalinghita8/android-mvp-dagger2/blob/master/readme_pics/scrolling.gif)
 ![content](https://github.com/catalinghita8/android-mvp-dagger2/blob/master/readme_pics/archiving.gif)
 ![content](https://github.com/catalinghita8/android-mvp-dagger2/blob/master/readme_pics/open_tab.gif)
 ## Presentation Layer
-As you can see in the below diagram, Views are intended to be as dumb and passive as possible. The Presenter handles most of the logic therefore cancelling any dependency between the View layer and the Model layer.
+As shown in the below diagram, the View layer is as passive as possible. The Presenter handles most of the logic, cancelling any dependancy between the View Layer and the Model Layer. 
 
-It is easy to spot the fact that the Model layer is completely isolated and centralized through the repository pattern.
+The model layer is completely isolated and centralized throught the repository pattern.
+
 
 ![Presentation](https://github.com/catalinghita8/android-mvp-dagger2/blob/master/readme_pics/presentation_layer_diagram.png)
 
 ## Model Layer
-The model layer is structured on repository pattern so that the presenter has no clue on the origins of the data. Following this idea, the repository has two main use-cases, online and offline. In the online use-case data is first being fetched from the `NewsRemoteDataSource` and the repository data is refreshed. In case of failure,  `NewsLocalDataSource` is queried. As for the offline use-case, `NewsLocalDataSource` has priority.
-
-As you might have noticed in the above diagram and discussion, the repository handles data interactions and transactions from two main data sources - local and remote:
-- `NewsRemoteDataSource` defined by a REST API consumed with [Retrofit](http://square.github.io/retrofit)
-- `NewsLocalDataSource` defined by a SQL database consumed with [Room](https://developer.android.com/topic/libraries/architecture/room)
+The model layer is structured on repository pattern so that the presenter has no clue on the origins of the data. Following this idea, the repository has two main use-cases, online and offline. In the online use-case data is first being fetched from `NewsRemoteDataSource` defined by a REST API consumed with [Retrofit](http://square.github.io/retrofit), and the repository data is refreshed. In case of failure,  `NewsLocalDataSource` defined by a SQL database consumed with [Room](https://developer.android.com/topic/libraries/architecture/room) is queried. As for the offline use-case, `NewsLocalDataSource` has priority.
 
 When data is being retrieved (from any source), every response is propagated through callbacks all the way to the `NewsPresenter` that handles them accordingly.
 
