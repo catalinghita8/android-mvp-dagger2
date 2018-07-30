@@ -84,6 +84,9 @@ public class NewsScreenTest {
      * Upon archiving a news (item), the tests checks whether that an item is being displayed
      * in the archived navigation list
      *
+     * Note: this test should be executed while having no other items archived. If so, delete
+     * the app's data in emulator/device: Settings -> Applications -> Mr. News -> Delete Data
+     *
      * Note: we do not have to worry about any Espresso PerformException errors as our
      * EspressoIdlingResources take care of that in {@link SimpleCountingIdlingResource}
      */

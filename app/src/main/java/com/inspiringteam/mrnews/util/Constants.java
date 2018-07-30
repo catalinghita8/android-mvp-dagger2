@@ -11,7 +11,7 @@ public class Constants {
     public final static String NEWS_CATEGORY_BUSINESS = "business";
     public static final String NEWS_API_BASE_URL = "https://newsapi.org/v2/";
     public static final String NEWS_API_KEY_STRING = "apiKey";
-    public static final String NEWS_API_COUNTRY_STRING = "us";
+    public static final String NEWS_API_COUNTRY_STRING = "gb";
     public static final String NEWS_ROOM_DB_STRING = "News.db";
 
     // for tests only

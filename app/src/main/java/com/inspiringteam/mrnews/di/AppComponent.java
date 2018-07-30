@@ -13,7 +13,6 @@ import dagger.android.support.AndroidSupportInjectionModule;
 
 /**
  * This is the root Dagger component.
- * <p>
  * {@link AndroidSupportInjectionModule}
  * is the module from Dagger.Android that helps with the generation
  * and location of subcomponents, which will be in our case, activities

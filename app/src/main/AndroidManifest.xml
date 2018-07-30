@@ -20,10 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- <activity android:name=".newsdetail.NewsDetailActivity"/> -->
-        <activity android:name=".newsdetail.NewsDetailActivity" />
-        <activity android:name=".delete.DeleteActivity" />
-        <activity android:name=".newsdetail.NewsDetailsActivity"></activity>
     </application>
 
 </manifest>
