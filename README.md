@@ -11,7 +11,7 @@ Mr. News is an app that displays news headlines from all around the world. A fix
 ## Presentation Layer
 MVP pattern is used to facilitate automated testing and improve the separation of concerns in presentation logic.
 
-As shown in the below diagram, the View layer is as passive as possible. The Presenter handles most of the logic, cancelling any dependancy between the View Layer and the Model Layer. The model layer is completely isolated and centralized through the repository pattern.
+As shown in the below diagram, the View layer is as passive as possible. The Presenter handles most of the logic, cancelling any dependancy between the View Layer and the Model Layer - at the cost of having a relation between the `Presenter` and its corresponding `View` through the use of `Contracts`. The model layer is completely isolated and centralized through the repository pattern.
 
 ![Presentation](https://github.com/catalinghita8/android-mvp-dagger2/blob/master/readme_pics/presentation_layer_diagram.png)
 
@@ -26,7 +26,7 @@ There are two main use-cases, online and offline. In the online use-case data is
 
 When data is being retrieved (from any source), every response is propagated through callbacks all the way to the `NewsPresenter` that handles them accordingly.
 
-The same way as the Presenter-View relationship depends entirely on interfaces defined in `NewsContract`, decoupling is reinforced within the Model layer (entirely consisted by `NewsRepository`). Therefore, lower level components (which are the data sources: `NewsRemoteDataSource` and `NewsLocalDatasource`) are decoupled through `NewsDataSource` interface. Also, through their dependence on the same interface, these data sources are interchangeable.
+The same way as the Presenter-View relation depends entirely on interfaces defined in `NewsContract`, decoupling is reinforced within the Model layer (entirely consisted by `NewsRepository`). Therefore, lower level components (which are the data sources: `NewsRemoteDataSource` and `NewsLocalDatasource`) are decoupled through `NewsDataSource` interface. Also, through their dependence on the same interface, these data sources are interchangeable.
 
 In this manner, the project respects the DIP (Dependency Inversion Principle) as both low and high level modules depend on abstractions.
 
@@ -62,6 +62,7 @@ In order to synchronize the background tasks with the testing environment provid
 - Is scalable and easy to expand.
 ## Weak points
 - Maintenance effort could be lower and scalability could be better - even though the app has a solid structure and complies to some of the SOLID principles, it cannot be considered as part of Clean Architecture, mainly because the Presenter contains most of the logic, therefore substituting Interactors (use-cases).
+- Decoupling level could be higher - even though MVP presentation pattern reduces coupling, the relation between `Presenter` and its corresponding  `View` still remains through the use of `Contracts`.
 - Possess medium complexity - other approaches might lower complexity and increase efficiency.
 
 # Final notes:
