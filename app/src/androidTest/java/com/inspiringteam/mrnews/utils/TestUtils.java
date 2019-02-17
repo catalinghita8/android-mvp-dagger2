@@ -3,21 +3,21 @@ package com.inspiringteam.mrnews.utils;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
-import android.support.test.espresso.UiController;
-import android.support.test.espresso.ViewAction;
-import android.support.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
-import android.support.v7.widget.Toolbar;
-import android.support.test.runner.lifecycle.ActivityLifecycleMonitor;
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.ViewAction;
+import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
+import androidx.appcompat.widget.Toolbar;
+import androidx.test.runner.lifecycle.ActivityLifecycleMonitor;
 import android.view.View;
 
 import org.hamcrest.Matcher;
 
 import java.util.Collection;
 
-import static android.support.test.InstrumentationRegistry.getInstrumentation;
-import static android.support.test.runner.lifecycle.Stage.RESUMED;
+import static androidx.test.InstrumentationRegistry.getInstrumentation;
+import static androidx.test.runner.lifecycle.Stage.RESUMED;
 
 /**
  * Useful test methods common to any activity

@@ -10,7 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
     buildTypes {
@@ -60,7 +60,6 @@ android {
             events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
         }
     }
-    buildToolsVersion '27.0.3'
 }
 
 /*
@@ -69,17 +68,17 @@ android {
  */
 dependencies {
     // App's dependencies, including test
-    implementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
-    implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintLayout"
-    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
-    implementation "com.android.support.test.espresso:espresso-idling-resource:$rootProject.espressoVersion"
+    implementation "androidx.legacy:legacy-support-v4:$rootProject.androidxLegacyVersion"
+    implementation "androidx.appcompat:appcompat:$rootProject.androidxVersion"
+    implementation "androidx.cardview:cardview:$rootProject.cardviewVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayout"
+    implementation "com.google.android.material:material:$rootProject.materialVersion"
+    implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
+    implementation "androidx.legacy:legacy-support-v4:$rootProject.supportLibraryVersion"
+    implementation "androidx.test.espresso:espresso-idling-resource:$rootProject.espressoVersion"
     implementation "com.google.guava:guava:$rootProject.guavaVersion"
-    implementation "android.arch.persistence.room:runtime:$rootProject.roomVersion"
-    annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomVersion"
+    implementation "androidx.room:room-runtime:$rootProject.roomVersion"
+    annotationProcessor "androidx.room:room-compiler:$rootProject.roomVersion"
 
     // Dagger dependencies
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
@@ -95,10 +94,10 @@ dependencies {
     testImplementation "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
 
     // Android Testing Support Library's runner and rules
-    androidTestImplementation "com.android.support.test:runner:$rootProject.ext.runnerVersion"
-    androidTestImplementation "com.android.support.test:rules:$rootProject.ext.rulesVersion"
+    androidTestImplementation "androidx.test:runner:$rootProject.ext.runnerVersion"
+    androidTestImplementation "androidx.test:rules:$rootProject.ext.rulesVersion"
 
-    androidTestImplementation "android.arch.persistence.room:testing:$rootProject.roomVersion"
+    androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
 
     // Dependencies for Android unit tests
     androidTestImplementation "junit:junit:$rootProject.ext.junitVersion"
@@ -107,19 +106,19 @@ dependencies {
     androidTestImplementation "com.google.dexmaker:dexmaker-mockito:$rootProject.ext.dexmakerVersion"
 
     // Espresso UI Testing
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$rootProject.espressoVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.espressoVersion"
-    androidTestImplementation "com.android.support.test.espresso.idling:idling-concurrent:$rootProject.espressoVersion"
-    implementation "com.android.support.test.espresso:espresso-idling-resource:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:$rootProject.espressoVersion"
+    implementation "androidx.test.espresso:espresso-idling-resource:$rootProject.espressoVersion"
 
     // Resolve conflicts between main and test APK:
-    androidTestImplementation "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
-    androidTestImplementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
-    androidTestImplementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
-    androidTestImplementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-    androidTestImplementation "com.android.support:design:$rootProject.supportLibraryVersion"
-    androidTestImplementation "com.google.code.findbugs:jsr305:3.0.1"
+    androidTestImplementation "androidx.annotation:annotation:$rootProject.supportLibraryVersion"
+    androidTestImplementation "androidx.legacy:legacy-support-v4:$rootProject.supportLibraryVersion"
+    androidTestImplementation "androidx.recyclerview:recyclerview:$rootProject.supportLibraryVersion"
+    androidTestImplementation "androidx.appcompat:appcompat:$rootProject.supportLibraryVersion"
+    androidTestImplementation "com.google.android.material:material:$rootProject.supportLibraryVersion"
+    androidTestImplementation "com.google.code.findbugs:jsr305:3.0.2"
 
     //RxJava and rxAndroid, retrofit,  picasso and custom tabs dependencies
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
@@ -129,9 +128,14 @@ dependencies {
     implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.gsonConverterVersion"
     implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
-    implementation "com.android.support:customtabs:$rootProject.supportCustomTabsVersion"
+    implementation "androidx.browser:browser:$rootProject.customTabsVersion"
 //    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
+
+configurations {
+    all*.exclude group: 'com.google.guava', module: 'listenablefuture'
+}
+
 repositories {
     mavenCentral()
 }

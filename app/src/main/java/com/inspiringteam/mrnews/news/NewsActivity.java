@@ -1,12 +1,11 @@
 package com.inspiringteam.mrnews.news;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.navigation.NavigationView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.inspiringteam.mrnews.R;
@@ -25,7 +24,7 @@ public class NewsActivity extends DaggerAppCompatActivity {
     @Inject
     NewsPresenter mNewsPresenter;
     @Inject
-    NewsFragment injectedFragment;
+    NewsFragment mInjectedFragment;
 
     private DrawerLayout mDrawerLayout;
 
@@ -49,7 +48,7 @@ public class NewsActivity extends DaggerAppCompatActivity {
         // Set up fragment
         NewsFragment fragment = (NewsFragment) getFragmentManager().findFragmentById(R.id.contentFrame);
         if (fragment == null) {
-            fragment = injectedFragment;
+            fragment = mInjectedFragment;
             ActivityUtils.addFragmentToActivity(getFragmentManager(), fragment, R.id.contentFrame);
         }
     }

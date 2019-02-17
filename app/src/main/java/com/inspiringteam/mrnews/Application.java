@@ -1,11 +1,8 @@
 package com.inspiringteam.mrnews;
 
-import android.support.annotation.VisibleForTesting;
+import androidx.annotation.VisibleForTesting;
 
-import com.inspiringteam.mrnews.data.source.NewsRepository;
 import com.inspiringteam.mrnews.di.DaggerAppComponent;
-
-import javax.inject.Inject;
 
 import dagger.android.AndroidInjector;
 import dagger.android.DaggerApplication;

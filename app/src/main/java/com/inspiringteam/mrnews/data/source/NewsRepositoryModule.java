@@ -1,5 +1,6 @@
 package com.inspiringteam.mrnews.data.source;
 
+import com.inspiringteam.mrnews.Application;
 import com.inspiringteam.mrnews.data.source.local.NewsDao;
 import com.inspiringteam.mrnews.data.source.local.NewsLocalDataModule;
 import com.inspiringteam.mrnews.data.source.local.NewsLocalDataSource;

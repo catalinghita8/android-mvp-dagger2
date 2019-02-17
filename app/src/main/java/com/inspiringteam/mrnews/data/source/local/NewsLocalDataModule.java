@@ -1,7 +1,7 @@
 package com.inspiringteam.mrnews.data.source.local;
 
 import android.app.Application;
-import android.arch.persistence.room.Room;
+import androidx.room.Room;
 
 import com.inspiringteam.mrnews.di.scopes.AppScoped;
 import com.inspiringteam.mrnews.util.Constants;

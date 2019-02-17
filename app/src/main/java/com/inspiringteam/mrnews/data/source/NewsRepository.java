@@ -1,6 +1,6 @@
 package com.inspiringteam.mrnews.data.source;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.inspiringteam.mrnews.data.models.News;
 import com.inspiringteam.mrnews.data.source.scopes.Local;

@@ -3,7 +3,7 @@ package com.inspiringteam.mrnews.util.ExecutorUtils;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.inspiringteam.mrnews.di.scopes.AppScoped;
 

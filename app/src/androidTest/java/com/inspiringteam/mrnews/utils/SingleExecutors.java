@@ -1,6 +1,6 @@
 package com.inspiringteam.mrnews.utils;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.inspiringteam.mrnews.util.ExecutorUtils.AppExecutors;
 
